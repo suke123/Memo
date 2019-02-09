@@ -12,15 +12,28 @@
 
 ## Threadについて
 Threadとは処理を実行する流れのことである。<br>
-画面処理とは別にバックで処理したい場合にスレッドを使うことで並列処理を可能にする。<br>
+画面処理とは別にバックで処理したい場合にThreadを使うことで並列処理を可能にする。<br>
 
 アプリケーション起動時、システムはアプリケーション実行用のスレッド（メインスレッド）を作成する。<br>
 このスレッドは描画イベントを含むイベントを適切なUIウィジェットに送信する役割を担う。<br>
-つまり、メインスレッドはUI操作が可能せある。<br>
 
 Androidのシングルスレッドモデルには以下の2つのルールがある。<br>
 * UIスレッドをブロックしない
 * UIスレッド以外からAndroidツールキットにアクセスしない
+
+```java:SimpleThread.java
+public class SimpleThread {
+    public static void main(String[] args) {
+        System.out.println("メインスレッドだよ");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("別のスレッドだよ");
+            }
+        }).start();
+    }
+}
+```
 
 ## Handlerについて
 
