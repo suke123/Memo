@@ -21,19 +21,8 @@ Androidのシングルスレッドモデルには以下の2つのルールがあ
 * UIスレッドをブロックしない
 * UIスレッド以外からAndroidツールキットにアクセスしない
 
-```java:SimpleThread.java
-public class SimpleThread {
-    public static void main(String[] args) {
-        System.out.println("メインスレッドだよ");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("別のスレッドだよ");
-            }
-        }).start();
-    }
-}
-```
+アプリケーションのUIの応答性のためにもUIスレッドをブロックしないことが不可欠である。<br>
+
 
 ## Handlerについて
 
